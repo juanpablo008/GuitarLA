@@ -1,7 +1,9 @@
 import { useState } from 'react'
+import Script from 'next/script'
 import Image from 'next/image'
 import Layout from '../../components/Layout'
 import styles from '../../styles/Guitarra.module.css'
+import Swal from "sweetalert2"
 
 const Producto = ({guitarra, agregarCarrito}) => {
 
@@ -24,6 +26,18 @@ const Producto = ({guitarra, agregarCarrito}) => {
       cantidad
     }
     agregarCarrito(guitarraSeleccionada)
+    newAlertSuccess('Success', 'Se ha agregado a tu carrito correctamente')
+  }
+
+  const newAlertSuccess = (title, text) => {
+    Swal.fire({
+      position: 'center',
+      icon: 'success',
+      title,
+      text,
+      showConfirmButton: false,
+      timer: 1500
+    })
   }
 
   return (
@@ -54,6 +68,7 @@ const Producto = ({guitarra, agregarCarrito}) => {
           </form>
         </div>
       </div>
+      <Script src='https://cdn.jsdelivr.net/npm/sweetalert2@11.4.7/dist/sweetalert2.all.min.js' id="script-sweetalert2" />
     </Layout>
   )
 }
